@@ -69,21 +69,29 @@
     <OutDir>$(SolutionDir)..\Bin\Executable\</OutDir>
     <IntDir>$(SolutionDir)..\Obj\$(ProjectName)\$(PlatformShortName)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(PlatformShortName)D</TargetName>
+    <IncludePath>$(SolutionDir)..\External\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\External\Lib\Win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)..\Bin\Executable\</OutDir>
     <IntDir>$(SolutionDir)..\Obj\$(ProjectName)\$(PlatformShortName)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(PlatformShortName)</TargetName>
+    <LibraryPath>$(SolutionDir)..\External\Lib\Win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\External\Include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)..\Bin\Executable\</OutDir>
     <IntDir>$(SolutionDir)..\Obj\$(ProjectName)\$(PlatformShortName)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(PlatformShortName)D</TargetName>
+    <LibraryPath>$(SolutionDir)..\External\Lib\Win64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\External\Include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)..\Bin\Executable\</OutDir>
     <IntDir>$(SolutionDir)..\Obj\$(ProjectName)\$(PlatformShortName)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(PlatformShortName)</TargetName>
+    <LibraryPath>$(SolutionDir)..\External\Lib\Win64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\External\Include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

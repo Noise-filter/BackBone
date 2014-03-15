@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+#include <vld.h>
+
 int main()
 {
 
