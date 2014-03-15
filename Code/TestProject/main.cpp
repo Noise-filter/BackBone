@@ -6,6 +6,11 @@ using namespace std;
 
 int main()
 {
+	if (SetDllDirectory("..\\DLL") == FALSE)
+	{
+		return -1;
+	}
+
 	cout << BackBone::a << endl;
 	BackBone::Hej();
 
