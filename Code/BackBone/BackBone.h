@@ -6,29 +6,32 @@
 
 #include "BackBoneAPI_Preprocessor.h"
 
-class BACKBONEAPI_USAGE BackBone
+namespace BackBone
 {
-public:
-	static bool Init(HWND hwnd);
-	static void Flush();
+	class BACKBONEAPI_USAGE API
+	{
+	public:
+		static bool Init(HWND hwnd, unsigned int width, unsigned int height, bool fullscreen);
+		static void Flush();
 
-	static void SetView(float matrix[16]);
-	static void SetProjection(float matrix[16]);
-	
-	static void BeginFrame();
-	static void EndFrame();
+		static void SetView(float matrix[16]);
+		static void SetProjection(float matrix[16]);
 
-	static void RenderModel();
-	static void RenderScene();
+		static void BeginFrame();
+		static void EndFrame();
 
-	static void CreateModel(std::string filename);
-	static void CreateTexture(std::string filename);
+		static void RenderModel();
+		static void RenderScene();
 
-	static void DeleteModel();
-	static void DeleteTexture();
+		static void CreateModel(std::string filename);
+		static void CreateTexture(std::string filename);
 
-	static void SetOptions();
+		static void DeleteModel();
+		static void DeleteTexture();
 
-};
+		static void SetOptions();
+
+	};
+}
 
 #endif

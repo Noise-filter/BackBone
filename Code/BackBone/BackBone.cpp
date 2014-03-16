@@ -1,68 +1,74 @@
 #include "BackBone.h"
+#include "Core\Core.h"
 
-bool BackBone::Init(HWND hwnd)
+using namespace BackBone;
+
+bool API::Init(HWND hwnd, unsigned int width, unsigned int height, bool fullscreen)
 {
-
+	if (!Core::Init::CreateDeviceAndSwapChain(hwnd, DirectX::XMUINT2(width, height), fullscreen))
+	{
+		return false;
+	}
 
 	return true;
 }
 
-void BackBone::Flush()
+void API::Flush()
 {
 
 }
 
-void BackBone::SetView(float matrix[16])
+void API::SetView(float matrix[16])
 {
 
 }
 
-void BackBone::SetProjection(float matrix[16])
+void API::SetProjection(float matrix[16])
 {
 
 }
 
-void BackBone::BeginFrame()
+void API::BeginFrame()
 {
 
 }
 
-void BackBone::EndFrame()
+void API::EndFrame()
 {
 
 }
 
-void BackBone::RenderModel()
+void API::RenderModel()
 {
 
 }
 
-void BackBone::RenderScene()
+void API::RenderScene()
 {
 
 }
 
-void BackBone::CreateModel(std::string filename)
+void API::CreateModel(std::string filename)
 {
 
 }
 
-void BackBone::CreateTexture(std::string filename)
+void API::CreateTexture(std::string filename)
 {
 
 }
 
-void BackBone::DeleteModel()
+void API::DeleteModel()
 {
 
 }
 
-void BackBone::DeleteTexture()
+void API::DeleteTexture()
 {
 
 }
 
-void BackBone::SetOptions()
+void API::SetOptions()
 {
 
 }

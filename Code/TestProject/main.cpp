@@ -4,6 +4,7 @@ using namespace std;
 
 #include <vld.h>
 #include "../BackBone/BackBone.h"
+using namespace BackBone;
 
 int main()
 {
@@ -12,13 +13,13 @@ int main()
 		return -1;
 	}
 
-	if (!BackBone::Init(NULL))
+	if (!API::Init(NULL, 1024, 768, false))
 	{
 		return 1;
 	}
 
 
-	BackBone::Flush();
+	API::Flush();
 
 	return 0;
 }
