@@ -146,11 +146,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Test.cpp" />
+    <ClCompile Include="BackBone.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackBoneAPI_Preprocessor.h" />
-    <ClInclude Include="Test.h" />
+    <ClInclude Include="BackBone.h" />
+    <ClInclude Include="Directx11Includes.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

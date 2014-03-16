@@ -3,7 +3,7 @@ using namespace std;
 #include <Windows.h>
 
 #include <vld.h>
-#include "../BackBone/Test.h"
+#include "../BackBone/BackBone.h"
 
 int main()
 {
@@ -12,8 +12,8 @@ int main()
 		return -1;
 	}
 
-	cout << BackBone::a << endl;
-	BackBone::Hej();
+	
+	
 
 	return 0;
 }
