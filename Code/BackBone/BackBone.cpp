@@ -1,68 +1,68 @@
 #include "BackBone.h"
 
-bool Init(HWND hwnd)
+bool BackBone::Init(HWND hwnd)
 {
 
 
 	return true;
 }
 
-void Flush()
+void BackBone::Flush()
 {
 
 }
 
-void SetView(float matrix[16])
+void BackBone::SetView(float matrix[16])
 {
 
 }
 
-void SetProjection(float matrix[16])
+void BackBone::SetProjection(float matrix[16])
 {
 
 }
 
-void BeginFrame()
+void BackBone::BeginFrame()
 {
 
 }
 
-void EndFrame()
+void BackBone::EndFrame()
 {
 
 }
 
-void RenderModel()
+void BackBone::RenderModel()
 {
 
 }
 
-void RenderScene()
+void BackBone::RenderScene()
 {
 
 }
 
-void CreateModel(std::string filename)
+void BackBone::CreateModel(std::string filename)
 {
 
 }
 
-void CreateTexture(std::string filename)
+void BackBone::CreateTexture(std::string filename)
 {
 
 }
 
-void DeleteModel()
+void BackBone::DeleteModel()
 {
 
 }
 
-void DeleteTexture()
+void BackBone::DeleteTexture()
 {
 
 }
 
-void SetOptions()
+void BackBone::SetOptions()
 {
 
 }

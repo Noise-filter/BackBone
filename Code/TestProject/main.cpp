@@ -12,8 +12,13 @@ int main()
 		return -1;
 	}
 
-	
-	
+	if (!BackBone::Init(NULL))
+	{
+		return 1;
+	}
+
+
+	BackBone::Flush();
 
 	return 0;
 }
