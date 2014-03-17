@@ -5,7 +5,13 @@ using namespace BackBone;
 
 bool API::Init(HWND hwnd, unsigned int width, unsigned int height, bool fullscreen)
 {
-	if (!Core::Init::CreateDeviceAndSwapChain(hwnd, DirectX::XMUINT2(width, height), fullscreen))
+	DirectX::XMUINT2 resolution(width, height);
+	if (!Core::Init::CreateDeviceAndSwapChain(hwnd, resolution, fullscreen))
+	{
+		return false;
+	}
+
+	if (!Core::Init::CreateDepthStencil(resolution))
 	{
 		return false;
 	}
@@ -15,7 +21,7 @@ bool API::Init(HWND hwnd, unsigned int width, unsigned int height, bool fullscre
 
 void API::Flush()
 {
-
+	Core::Flush();
 }
 
 void API::SetView(float matrix[16])

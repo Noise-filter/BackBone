@@ -43,23 +43,62 @@ bool Core::Init::CreateDeviceAndSwapChain(HWND window, XMUINT2 resolution, bool 
 	{
 		if (deviceContext)
 		{
-			deviceContext->Release();
-			deviceContext = NULL;
+			SAFE_RELEASE(deviceContext);
 		}
 
 		if (device)
 		{
-			device->Release();
-			device = NULL;
+			SAFE_RELEASE(device);
 		}
 
 		if (swapChain)
 		{
-			swapChain->Release();
-			swapChain = NULL;
+			SAFE_RELEASE(swapChain);
 		}
 		return false;
 	}
+
+	return true;
+}
+
+bool Core::Init::CreateDepthStencil(XMUINT2 resolution)
+{
+	//Create depth stencil texture
+	D3D11_TEXTURE2D_DESC textureDesc;
+	textureDesc.ArraySize = 1;
+	textureDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL | D3D11_BIND_SHADER_RESOURCE;
+	textureDesc.CPUAccessFlags = 0;
+	textureDesc.Format = DXGI_FORMAT_R32_TYPELESS;
+	textureDesc.MipLevels = 1;
+	textureDesc.MiscFlags = 0;
+	textureDesc.SampleDesc.Count = 1;
+	textureDesc.SampleDesc.Quality = 0;
+	textureDesc.Usage = D3D11_USAGE_DEFAULT;
+	textureDesc.Width = resolution.x;
+	textureDesc.Height = resolution.y;
+	
+	ID3D11Texture2D* depthTexture;
+
+	if (FAILED(device->CreateTexture2D(&textureDesc, NULL, &depthTexture)))
+	{
+		return false;
+	}
+
+	//Create depth stencil view
+	D3D11_DEPTH_STENCIL_VIEW_DESC depthDesc;
+	depthDesc.Flags = 0;
+	depthDesc.Format = DXGI_FORMAT_D32_FLOAT;
+	depthDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+	depthDesc.Texture2D.MipSlice = 0;
+
+	if (device->CreateDepthStencilView(depthTexture, &depthDesc, &depthStencil))
+	{
+		SAFE_RELEASE(depthStencil);
+		SAFE_RELEASE(depthTexture);
+		return false;
+	}
+
+	SAFE_RELEASE(depthTexture);
 
 	return true;
 }

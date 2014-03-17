@@ -11,16 +11,20 @@ namespace BackBone
 		static ID3D11Device* device;
 		static ID3D11DeviceContext* deviceContext;
 		static IDXGISwapChain* swapChain;
+		
+		static ID3D11DepthStencilView* depthStencil;
 
 		static HWND window;
 		static DirectX::XMUINT2 resolution;
 		static bool fullscreen;
 
+		static void Flush();
+
 		class Init
 		{
 		public:
 			static bool CreateDeviceAndSwapChain(HWND window, DirectX::XMUINT2 resolution, bool fullscreen);
-
+			static bool CreateDepthStencil(DirectX::XMUINT2 resolution);
 		};
 	};
 }
