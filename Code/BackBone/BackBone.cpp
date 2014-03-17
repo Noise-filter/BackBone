@@ -16,6 +16,11 @@ bool API::Init(HWND hwnd, unsigned int width, unsigned int height, bool fullscre
 		return false;
 	}
 
+	if (!Core::Init::CreateBackBuffer())
+	{
+		return false;
+	}
+
 	Core::Init::CreateViewPort(DirectX::XMUINT2(0, 0), resolution);
 
 	return true;

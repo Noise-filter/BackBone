@@ -13,6 +13,7 @@ namespace BackBone
 		static IDXGISwapChain* swapChain;
 		
 		static ID3D11DepthStencilView* depthStencil;
+		static ID3D11RenderTargetView* backBufferRTV;
 
 		static D3D11_VIEWPORT viewPort;
 
@@ -27,7 +28,7 @@ namespace BackBone
 		public:
 			static bool CreateDeviceAndSwapChain(HWND window, DirectX::XMUINT2 resolution, bool fullscreen);
 			static bool CreateDepthStencil(DirectX::XMUINT2 resolution);
-
+			static bool CreateBackBuffer();
 			static void CreateViewPort(DirectX::XMUINT2 origin, DirectX::XMUINT2 resolution);
 		};
 	};
