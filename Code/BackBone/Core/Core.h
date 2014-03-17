@@ -14,6 +14,8 @@ namespace BackBone
 		
 		static ID3D11DepthStencilView* depthStencil;
 
+		static D3D11_VIEWPORT viewPort;
+
 		static HWND window;
 		static DirectX::XMUINT2 resolution;
 		static bool fullscreen;
@@ -25,6 +27,8 @@ namespace BackBone
 		public:
 			static bool CreateDeviceAndSwapChain(HWND window, DirectX::XMUINT2 resolution, bool fullscreen);
 			static bool CreateDepthStencil(DirectX::XMUINT2 resolution);
+
+			static void CreateViewPort(DirectX::XMUINT2 origin, DirectX::XMUINT2 resolution);
 		};
 	};
 }

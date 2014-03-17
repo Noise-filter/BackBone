@@ -66,7 +66,7 @@ bool Core::Init::CreateDepthStencil(XMUINT2 resolution)
 	//Create depth stencil texture
 	D3D11_TEXTURE2D_DESC textureDesc;
 	textureDesc.ArraySize = 1;
-	textureDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL | D3D11_BIND_SHADER_RESOURCE;
+	textureDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
 	textureDesc.CPUAccessFlags = 0;
 	textureDesc.Format = DXGI_FORMAT_R32_TYPELESS;
 	textureDesc.MipLevels = 1;
@@ -91,7 +91,7 @@ bool Core::Init::CreateDepthStencil(XMUINT2 resolution)
 	depthDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
 	depthDesc.Texture2D.MipSlice = 0;
 
-	if (device->CreateDepthStencilView(depthTexture, &depthDesc, &depthStencil))
+	if (FAILED(device->CreateDepthStencilView(depthTexture, &depthDesc, &depthStencil)))
 	{
 		SAFE_RELEASE(depthStencil);
 		SAFE_RELEASE(depthTexture);
@@ -101,4 +101,14 @@ bool Core::Init::CreateDepthStencil(XMUINT2 resolution)
 	SAFE_RELEASE(depthTexture);
 
 	return true;
+}
+
+void Core::Init::CreateViewPort(DirectX::XMUINT2 origin, DirectX::XMUINT2 resolution)
+{
+	viewPort.TopLeftX = origin.x;
+	viewPort.TopLeftY = origin.x;
+	viewPort.Width = resolution.x;
+	viewPort.Height = resolution.y;
+	viewPort.MinDepth = 0.0f;
+	viewPort.MaxDepth = 1.0f;
 }

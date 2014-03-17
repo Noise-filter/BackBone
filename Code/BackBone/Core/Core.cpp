@@ -9,6 +9,8 @@ IDXGISwapChain* Core::swapChain = NULL;
 
 ID3D11DepthStencilView* Core::depthStencil = NULL;
 
+D3D11_VIEWPORT Core::viewPort;
+
 HWND Core::window = NULL;
 DirectX::XMUINT2 Core::resolution;
 bool Core::fullscreen = false;
