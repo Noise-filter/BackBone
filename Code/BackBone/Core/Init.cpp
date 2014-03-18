@@ -126,10 +126,10 @@ bool Core::Init::CreateBackBuffer()
 
 void Core::Init::CreateViewPort(DirectX::XMUINT2 origin, DirectX::XMUINT2 resolution)
 {
-		viewPort.TopLeftX = origin.x;
-		viewPort.TopLeftY = origin.x;
-		viewPort.Width = resolution.x;
-		viewPort.Height = resolution.y;
-		viewPort.MinDepth = 0.0f;
-		viewPort.MaxDepth = 1.0f;
+	viewPort.TopLeftX = (FLOAT)origin.x;
+	viewPort.TopLeftY = (FLOAT)origin.x;
+	viewPort.Width = (FLOAT)resolution.x;
+	viewPort.Height = (FLOAT)resolution.y;
+	viewPort.MinDepth = 0.0f;
+	viewPort.MaxDepth = 1.0f;
 }
