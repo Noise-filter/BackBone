@@ -19,6 +19,7 @@ void Core::Flush()
 	swapChain->SetFullscreenState(FALSE, NULL);
 
 	SAFE_RELEASE(depthStencil);
+	SAFE_RELEASE(backBufferRTV);
 
 	SAFE_RELEASE(swapChain);
 	
