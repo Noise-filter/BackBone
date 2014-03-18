@@ -8,6 +8,7 @@ ID3D11DeviceContext *Core::deviceContext = NULL;
 IDXGISwapChain* Core::swapChain = NULL;
 
 ID3D11DepthStencilView* Core::depthStencil = NULL;
+ID3D11RenderTargetView* Core::backBufferRTV = NULL;
 
 HWND Core::window = NULL;
 DirectX::XMUINT2 Core::resolution;

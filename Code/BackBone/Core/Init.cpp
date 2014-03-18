@@ -102,3 +102,24 @@ bool Core::Init::CreateDepthStencil(XMUINT2 resolution)
 
 	return true;
 }
+
+bool Core::Init::CreateBackBuffer()
+{
+	ID3D11Texture2D *pBackBuffer = NULL;
+	if(FAILED(swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer)))
+	{
+		SAFE_RELEASE(pBackBuffer);
+		return false;
+	}
+
+	if (FAILED(device->CreateRenderTargetView(pBackBuffer, NULL, &Core::backBufferRTV)))
+	{
+		SAFE_RELEASE(pBackBuffer);
+		SAFE_RELEASE(backBufferRTV);
+		return false;
+	}
+
+	SAFE_RELEASE(pBackBuffer);
+
+	return true;
+}
