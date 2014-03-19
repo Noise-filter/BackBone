@@ -3,6 +3,7 @@
 
 #include <vld.h>
 #include <string>
+#include <Windows.h>
 
 #include "BackBoneAPI_Preprocessor.h"
 
