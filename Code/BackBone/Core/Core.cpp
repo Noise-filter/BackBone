@@ -16,8 +16,12 @@ HWND Core::window = NULL;
 DirectX::XMUINT2 Core::resolution;
 bool Core::fullscreen = false;
 
+ResourceMgr Core::resourceMgr;
+
 void Core::Flush()
 {
+	resourceMgr.Flush();
+
 	swapChain->SetFullscreenState(FALSE, NULL);
 
 	SAFE_RELEASE(depthStencil);

@@ -1,7 +1,9 @@
 #include "BackBone.h"
 #include "Core\Core.h"
+#include "Definitions\GraphicalDefinitions.h"
 
 using namespace BackBone;
+using namespace Definitions;
 
 bool API::Init(HWND hwnd, unsigned int width, unsigned int height, bool fullscreen)
 {
@@ -22,6 +24,8 @@ bool API::Init(HWND hwnd, unsigned int width, unsigned int height, bool fullscre
 	}
 
 	Core::Init::CreateViewPort(DirectX::XMUINT2(0, 0), resolution);
+
+	Core::resourceMgr.SetModelDefaultPath("../Content/Models/");
 
 	return true;
 }
@@ -51,7 +55,7 @@ void API::EndFrame()
 
 }
 
-void API::RenderModel()
+void API::RenderModel(ModelInstance* modelInstance)
 {
 
 }
@@ -61,9 +65,13 @@ void API::RenderScene()
 
 }
 
-void API::CreateModel(std::string filename)
+ModelInstance* API::CreateModel(std::string filename)
 {
+	ModelInstance* model = new ModelInstance();
+	
+	model->model = (BackBone::Definitions::ModelInstance::Model*)Core::resourceMgr.CreateModel(filename);
 
+	return model;
 }
 
 void API::CreateTexture(std::string filename)
@@ -71,9 +79,9 @@ void API::CreateTexture(std::string filename)
 
 }
 
-void API::DeleteModel()
+void API::DeleteModel(Definitions::ModelInstance* modelInstance)
 {
-
+	SAFE_DELETE(modelInstance);
 }
 
 void API::DeleteTexture()

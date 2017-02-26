@@ -2,6 +2,7 @@
 #define CORE_H
 
 #include "Directx11Includes.h"
+#include "../FileLoaders/ResourceMgr.h"
 
 namespace BackBone
 {
@@ -20,6 +21,8 @@ namespace BackBone
 		static HWND window;
 		static DirectX::XMUINT2 resolution;
 		static bool fullscreen;
+
+		static ResourceMgr resourceMgr;
 
 		static void Flush();
 

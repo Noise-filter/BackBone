@@ -32,6 +32,9 @@ int Init(HWND hWnd)
 		return -1;
 	}
 
+	Definitions::ModelInstance* m1 = API::CreateModel("bth.obj");
+	Definitions::ModelInstance* m2 = API::CreateModel("bth.obj");
+
 	return 0;
 }
 
@@ -90,8 +93,6 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 
 		Update(1.0f);
 		Render();
-		
-
 	}
 
 	API::Flush();

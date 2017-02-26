@@ -149,12 +149,25 @@
     <ClCompile Include="BackBone.cpp" />
     <ClCompile Include="Core\Core.cpp" />
     <ClCompile Include="Core\Init.cpp" />
+    <ClCompile Include="Definitions\BoundingVolumes.cpp" />
+    <ClCompile Include="FileLoaders\ModelLoaders\OBJLoader.cpp" />
+    <ClCompile Include="FileLoaders\ResourceMgr.cpp" />
+    <ClCompile Include="Model\Material.cpp" />
+    <ClCompile Include="Model\MeshGeometry.cpp" />
+    <ClCompile Include="Model\Model.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackBoneAPI_Preprocessor.h" />
     <ClInclude Include="BackBone.h" />
     <ClInclude Include="Core\Core.h" />
     <ClInclude Include="Core\Directx11Includes.h" />
+    <ClInclude Include="Definitions\BoundingVolumes.h" />
+    <ClInclude Include="Definitions\GraphicalDefinitions.h" />
+    <ClInclude Include="FileLoaders\Loaders.h" />
+    <ClInclude Include="FileLoaders\ResourceMgr.h" />
+    <ClInclude Include="Model\Material.h" />
+    <ClInclude Include="Model\MeshGeometry.h" />
+    <ClInclude Include="Model\Model.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -7,6 +7,8 @@
 
 #include "BackBoneAPI_Preprocessor.h"
 
+#include "Definitions\GraphicalDefinitions.h"
+
 namespace BackBone
 {
 	class BACKBONEAPI_USAGE API
@@ -21,13 +23,13 @@ namespace BackBone
 		static void BeginFrame();
 		static void EndFrame();
 
-		static void RenderModel();
+		static void RenderModel(Definitions::ModelInstance* modelInstance);
 		static void RenderScene();
 
-		static void CreateModel(std::string filename);
+		static Definitions::ModelInstance* CreateModel(std::string filename);
 		static void CreateTexture(std::string filename);
 
-		static void DeleteModel();
+		static void DeleteModel(Definitions::ModelInstance* modelInstance);
 		static void DeleteTexture();
 
 		static void SetOptions();
