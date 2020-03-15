@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -21,31 +21,32 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A0C06543-81DD-493A-96DF-AE6A45F238BB}</ProjectGuid>
     <RootNamespace>BackBone</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -152,22 +153,23 @@
     <ClCompile Include="Definitions\BoundingVolumes.cpp" />
     <ClCompile Include="FileLoaders\ModelLoaders\OBJLoader.cpp" />
     <ClCompile Include="FileLoaders\ResourceMgr.cpp" />
-    <ClCompile Include="Model\Material.cpp" />
-    <ClCompile Include="Model\MeshGeometry.cpp" />
     <ClCompile Include="Model\Model.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackBoneAPI_Preprocessor.h" />
     <ClInclude Include="BackBone.h" />
+    <ClInclude Include="Core\Camera.h" />
     <ClInclude Include="Core\Core.h" />
     <ClInclude Include="Core\Directx11Includes.h" />
     <ClInclude Include="Definitions\BoundingVolumes.h" />
     <ClInclude Include="Definitions\GraphicalDefinitions.h" />
     <ClInclude Include="FileLoaders\Loaders.h" />
     <ClInclude Include="FileLoaders\ResourceMgr.h" />
-    <ClInclude Include="Model\Material.h" />
-    <ClInclude Include="Model\MeshGeometry.h" />
     <ClInclude Include="Model\Model.h" />
+    <ClInclude Include="Model\ModelInstance.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\coloredShader.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

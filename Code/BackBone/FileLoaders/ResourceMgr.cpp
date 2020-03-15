@@ -1,6 +1,7 @@
 #include "ResourceMgr.h"
 
 #include <vector>
+#include <memory>
 
 #include "Loaders.h"
 #include "../Definitions/GraphicalDefinitions.h"
@@ -23,14 +24,7 @@ ResourceMgr::~ResourceMgr()
 
 void ResourceMgr::Flush()
 {
-	for (map<string, Model*>::iterator i = models.begin(); i != models.end(); i++)
-	{
-		if (i->second)
-		{
-			i->second->Release();
-			SAFE_DELETE(i->second);
-		}
-	}
+	models.clear();
 }
 
 void ResourceMgr::SetModelDefaultPath(std::string path)
@@ -38,17 +32,17 @@ void ResourceMgr::SetModelDefaultPath(std::string path)
 	ModelLoader::modelPath = path;
 }
 
-Model* ResourceMgr::CreateModel(std::string filename)
+std::shared_ptr<ModelColored> ResourceMgr::CreateModel(std::string filename)
 {
-	Model* model = models[filename];
+	std::shared_ptr<ModelColored> model = models[filename];
 
-	if (model == NULL)
+	if (model == nullptr)
 	{
 		//Load model
 		FileFormat format = GetFileFormat(filename);
-		if (!IsFileFormatSupported(format))
+		if (format == FileFormat::Unknown)
 		{
-			return NULL;
+			return nullptr;
 		}
 		else
 		{
@@ -59,24 +53,23 @@ Model* ResourceMgr::CreateModel(std::string filename)
 			
 			switch (format)
 			{
-			case FileFormat_OBJ:
+			case FileFormat::OBJ:
 				if (!ModelLoader::LoadOBJ(filename, vertices, indices, subsets, materials))
 				{
-					return NULL;
+					return nullptr;
 				}
 
-				model = new Model();
-				if (!model->Init(vertices, indices, subsets, materials))
+				//model = std::make_shared<ModelColored>(vertices, indices);
+				//if (!model->Init(vertices, indices, subsets, materials))
 				{
-					SAFE_DELETE(model);
-					return NULL;
+					return nullptr;
 				}
 
 				models[filename] = model;
 				break;
 
 			default:
-				return NULL;
+				return nullptr;
 				break;
 			}
 		}
@@ -88,14 +81,7 @@ Model* ResourceMgr::CreateModel(std::string filename)
 bool ResourceMgr::IsFileFormatSupported(std::string filename)
 {
 	FileFormat format = GetFileFormat(filename);
-	return IsFileFormatSupported(format);
-}
-
-bool ResourceMgr::IsFileFormatSupported(FileFormat format)
-{
-	if (format >= 0 && format < FileFormat_Count)
-		return true;
-	return false;
+	return format != FileFormat::Unknown;
 }
 
 FileFormat ResourceMgr::GetFileFormat(std::string filename)
@@ -111,5 +97,5 @@ FileFormat ResourceMgr::GetFileFormat(std::string filename)
 
 	//If we don't support the fileformat return Unknown.
 
-	return FileFormat_OBJ;
+	return FileFormat::OBJ;
 }

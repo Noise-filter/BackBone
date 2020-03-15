@@ -2,6 +2,7 @@
 #define GRAPHICAL_DEFINITIONS_H
 
 #include <string>
+#include <memory>
 #include "../Core/Directx11Includes.h"
 
 namespace BackBone
@@ -13,6 +14,12 @@ namespace BackBone
 			DirectX::XMFLOAT3 pos;
 			DirectX::XMFLOAT3 normal;
 			DirectX::XMFLOAT2 tex;
+		};
+
+		struct VertexColored
+		{
+			DirectX::XMFLOAT3 pos;
+			DirectX::XMFLOAT4 color;
 		};
 
 		struct MeshGroupInfo
@@ -43,12 +50,9 @@ namespace BackBone
 			std::string stencilTexture;
 		};
 
-		struct ModelInstance
+		struct cbPerObject
 		{
-			class Model;
-
-			Model* model;
-			DirectX::XMFLOAT4X4 world;
+			DirectX::XMMATRIX WVP;
 		};
 	}
 }

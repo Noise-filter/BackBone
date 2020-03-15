@@ -1,13 +1,15 @@
 #ifndef BACKBONE_H
 #define BACKBONE_H
 
-#include <vld.h>
 #include <string>
 #include <Windows.h>
+#include <vector>
 
 #include "BackBoneAPI_Preprocessor.h"
 
 #include "Definitions\GraphicalDefinitions.h"
+#include "Model/Model.h"
+#include "Model/ModelInstance.h"
 
 namespace BackBone
 {
@@ -17,22 +19,20 @@ namespace BackBone
 		static bool Init(HWND hwnd, unsigned int width, unsigned int height, bool fullscreen);
 		static void Flush();
 
-		static void SetView(float matrix[16]);
-		static void SetProjection(float matrix[16]);
-
 		static void BeginFrame();
 		static void EndFrame();
 
-		static void RenderModel(Definitions::ModelInstance* modelInstance);
+		static void RenderModel(std::unique_ptr<ModelInstance>& model);
 		static void RenderScene();
 
-		static Definitions::ModelInstance* CreateModel(std::string filename);
+		static std::unique_ptr<ModelInstance> CreateModel(std::string filename);
+		static std::unique_ptr<ModelInstance> CreateModel(std::vector<Definitions::VertexColored> vertices);
+		static std::unique_ptr<ModelInstance> CreateModel(std::vector<Definitions::VertexColored> vertices, std::vector<unsigned int> indices);
 		static void CreateTexture(std::string filename);
 
-		static void DeleteModel(Definitions::ModelInstance* modelInstance);
 		static void DeleteTexture();
 
-		static void SetOptions();
+		static void SetOptions(bool wireFrame);
 
 	};
 }

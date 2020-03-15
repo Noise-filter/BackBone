@@ -1,42 +1,14 @@
 #include <iostream>
-using namespace std;
 #include <Windows.h>
 
-#include <vld.h>
-#include "../BackBone/BackBone.h"
-using namespace BackBone;
+#include "Game.h"
 
-LRESULT CALLBACK			WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
-int Update(float deltaTime);
-int Render();
-int Init(HWND hWnd);
+using namespace std;
 
-const unsigned int SCREEN_WIDTH = 1024;
-const unsigned int SCREEN_HEIGHT = 768;
+LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
-int Update(float deltaTime)
-{
-
-	return 0;
-}
-
-int Render()
-{
-	return 0;
-}
-
-int Init(HWND hWnd)
-{
-	if (!API::Init(hWnd, SCREEN_WIDTH, SCREEN_HEIGHT, false))
-	{
-		return -1;
-	}
-
-	Definitions::ModelInstance* m1 = API::CreateModel("bth.obj");
-	Definitions::ModelInstance* m2 = API::CreateModel("bth.obj");
-
-	return 0;
-}
+const unsigned int SCREEN_WIDTH = 1920;
+const unsigned int SCREEN_HEIGHT = 1080;
 
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow)
 {
@@ -45,7 +17,6 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 		return -1;
 	}
 
-	HWND hWnd;
 	WNDCLASSEX wc;
 
 	ZeroMemory(&wc, sizeof(WNDCLASSEX));
@@ -54,7 +25,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 	wc.style = CS_HREDRAW | CS_VREDRAW;
 	wc.lpfnWndProc = WindowProc;
 	wc.hInstance = hInstance;
-	wc.hCursor = LoadCursor(NULL, IDC_ARROW);
+	wc.hCursor = LoadCursor(nullptr, IDC_ARROW);
 	wc.lpszClassName = "WindowClass";
 
 	RegisterClassEx(&wc);
@@ -62,7 +33,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 	RECT wr = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	AdjustWindowRect(&wr, WS_OVERLAPPEDWINDOW, FALSE);
 
-	hWnd = CreateWindowEx(NULL,
+	HWND hWnd = CreateWindowEx(0,
 		"WindowClass",
 		"BackBone",
 		WS_OVERLAPPEDWINDOW,
@@ -70,45 +41,54 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 		300,
 		wr.right - wr.left,
 		wr.bottom - wr.top,
-		NULL,
-		NULL,
+		nullptr,
+		nullptr,
 		hInstance,
-		NULL);
+		nullptr);
 
 	ShowWindow(hWnd, nCmdShow);
 
-	Init(hWnd);
-	MSG msg;
+	Game game(SCREEN_WIDTH, SCREEN_HEIGHT);
+
+	game.Init(hWnd);
 
 	while (true)
 	{
-		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+		MSG msg;
+		if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
 		{
+			TranslateMessage(&msg);
+
+			DispatchMessage(&msg);
+
 			if (msg.message == WM_QUIT)
 				break;
-
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
+		}
+		else
+		{
+			game.Update(1.0f);
+			game.Render();
 		}
 
-		Update(1.0f);
-		Render();
 	}
-
-	API::Flush();
 
 	return 0;
 }
+
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
 	{
+	case WM_KEYDOWN:
+		if (wParam == VK_ESCAPE) {
+			DestroyWindow(hWnd);
+		}
+		return 0;
 		case WM_DESTROY:
 		{
 			PostQuitMessage(0);
 			return 0;
 		} break;
-
 	}
 
 	return DefWindowProc(hWnd, message, wParam, lParam);

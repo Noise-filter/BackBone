@@ -2,16 +2,17 @@
 #define RESOURCE_MGR_H
 
 #include <map>
+#include <memory>
 #include "../Model/Model.h"
 
 namespace BackBone
 {
-	enum FileFormat
+	enum class FileFormat
 	{
-		FileFormat_OBJ,
+		OBJ,
 
-		FileFormat_Count,
-		FileFormat_Unknown = -1
+		Count,
+		Unknown = -1
 	};
 
 	class ResourceMgr
@@ -23,16 +24,15 @@ namespace BackBone
 		void Flush();
 
 		void SetModelDefaultPath(std::string path);
-		Model* CreateModel(std::string filename);
+		std::shared_ptr<ModelColored> CreateModel(std::string filename);
 
 		bool IsFileFormatSupported(std::string filename);
-		bool IsFileFormatSupported(FileFormat format);
 
 	private:
 		FileFormat GetFileFormat(std::string filename);
 
 	private:
-		std::map<std::string, Model*> models;
+		std::map<std::string, std::shared_ptr<ModelColored>> models;
 
 	};
 }

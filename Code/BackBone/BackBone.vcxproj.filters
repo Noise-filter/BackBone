@@ -36,16 +36,16 @@
     <ClInclude Include="FileLoaders\ResourceMgr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Model\MeshGeometry.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Model\Material.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FileLoaders\Loaders.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Definitions\BoundingVolumes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\ModelInstance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -68,14 +68,11 @@
     <ClCompile Include="FileLoaders\ResourceMgr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Model\MeshGeometry.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Definitions\BoundingVolumes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Model\Material.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\coloredShader.shader" />
   </ItemGroup>
 </Project>
